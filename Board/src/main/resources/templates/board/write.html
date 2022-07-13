@@ -45,8 +45,8 @@
 					</div>
 				</div>
 
-				<div class="btn_wrap text-center">
-					<a th:href="@{/board/list.do}" class="btn btn-default waves-effect waves-light">뒤로가기</a>
+				<div class="btn_wrap text-center" th:object="${params}">
+					<a th:href="|@{/board/list.do}*{makeQueryString(currentPageNo)}|" class="btn btn-default waves-effect waves-light">뒤로가기</a>
 					<button type="submit" class="btn btn-primary waves-effect waves-light">저장하기</button>
 				</div>
 			</form>
@@ -62,15 +62,28 @@
 
 				form.noticeYn.value = form.noticeYn.checked == false ? 'N' : 'Y';
 				form.secretYn.value = form.secretYn.checked == false ? 'N' : 'Y';
-
+			
 				var result = (
 						   isValid(form.title, "제목", null, null)
 						&& isValid(form.writer, "이름", null, null)
 						&& isValid(form.content, "내용", null, null)
 				);
-
+			
 				if ( result == false ) {
 					return false;
+				}
+			
+				var idx = /*[[ ${board.idx} ]]*/null;
+				if (isEmpty(idx) == false) {
+					var queryString = /*[[ ${params.makeQueryString(params.currentPageNo)} ]]*/null;
+			
+					/*[- 쿼리 스트링을 오브젝트 형태로 변환 -]*/
+					queryString = new URLSearchParams(queryString);
+					queryString.forEach(function(value, key) {
+						if (isEmpty(value) == false) {
+							$(form).append('<input type="hidden" name="' + key + '" value="' + value + '" />');
+						}
+					});
 				}
 			}
 			/*[- end of function -]*/
