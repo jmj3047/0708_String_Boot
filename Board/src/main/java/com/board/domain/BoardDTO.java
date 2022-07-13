@@ -9,14 +9,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class BoardDTO {
+public class BoardDTO extends CommonDTO{
+
 
 	@Override
 	public String toString() {
 		return "BoardDTO [idx=" + idx + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", viewCnt=" + viewCnt + ", noticeYn=" + noticeYn + ", secretYn=" + secretYn + ", deleteYn="
-				+ deleteYn + ", insertTime=" + insertTime + ", updateTime=" + updateTime + ", deleteTime=" + deleteTime
-				+ "]";
+				+ ", viewCnt=" + viewCnt + ", noticeYn=" + noticeYn + ", secretYn=" + secretYn + "]";
 	}
 
 	public Long getIdx() {
@@ -75,38 +74,6 @@ public class BoardDTO {
 		this.secretYn = secretYn;
 	}
 
-	public String getDeleteYn() {
-		return deleteYn;
-	}
-
-	public void setDeleteYn(String deleteYn) {
-		this.deleteYn = deleteYn;
-	}
-
-	public LocalDateTime getInsertTime() {
-		return insertTime;
-	}
-
-	public void setInsertTime(LocalDateTime insertTime) {
-		this.insertTime = insertTime;
-	}
-
-	public LocalDateTime getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(LocalDateTime updateTime) {
-		this.updateTime = updateTime;
-	}
-
-	public LocalDateTime getDeleteTime() {
-		return deleteTime;
-	}
-
-	public void setDeleteTime(LocalDateTime deleteTime) {
-		this.deleteTime = deleteTime;
-	}
-
 	/** 번호 (PK) */
 	private Long idx;
 
@@ -128,16 +95,5 @@ public class BoardDTO {
 	/** 비밀 여부 */
 	private String secretYn;
 
-	/** 삭제 여부 */
-	private String deleteYn;
-
-	/** 등록일 */
-	private LocalDateTime insertTime;
-
-	/** 수정일 */
-	private LocalDateTime updateTime;
-
-	/** 삭제일 */
-	private LocalDateTime deleteTime;
 
 }

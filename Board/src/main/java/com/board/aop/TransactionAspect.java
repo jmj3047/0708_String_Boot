@@ -25,7 +25,8 @@ public class TransactionAspect {
 
 	@Bean
 	public TransactionInterceptor transactionAdvice() {
-
+		
+		//어떤 예외든지 예외가 발생하면 롤백한다는 규칙설정
 		List<RollbackRuleAttribute> rollbackRules = Collections.singletonList(new RollbackRuleAttribute(Exception.class));
 
 		RuleBasedTransactionAttribute transactionAttribute = new RuleBasedTransactionAttribute();

@@ -79,6 +79,8 @@
 			notice_yn ASC,
 			idx DESC,
 			insert_time DESC
+		LIMIT
+			#{paginationInfo.firstRecordIndex}, #{recordsPerPage}
 	</select>
 
 	<select id="selectBoardTotalCount" parameterType="BoardDTO" resultType="int">
@@ -89,5 +91,5 @@
 		WHERE
 			delete_yn = 'N'
 	</select>
-
+	
 </mapper>
